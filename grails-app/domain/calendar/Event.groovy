@@ -6,8 +6,16 @@ class Event {
     Date date
     Integer cost
     String location
-    String discrption
+    String discription
+
+    static belongsTo=[user:User]
 
     static constraints = {
+        name nullable: false
+        date nullable: false
+        cost nullable:true
+        location nullable: true
+        discription nullable: true
+
     }
 }
