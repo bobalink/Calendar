@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="1" hostname="bythos.ngdc.noaa.gov" name="calendar.EventTests" tests="1" time="0.468" timestamp="2014-08-21T21:05:11">
+  <properties />
+  <testcase classname="calendar.EventTests" name="testSomething" time="0.449">
+    <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at calendar.EventTests.testSomething(EventTests.groovy:15)
+</failure>
+  </testcase>
+  <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+  <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+</testsuite>
