@@ -1,14 +1,126 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="1" hostname="bythos.ngdc.noaa.gov" id="0" name="EventTests" package="calendar" tests="1" time="0.468" timestamp="2014-08-21T21:05:11">
+  <testsuite errors="0" failures="3" hostname="bythos.ngdc.noaa.gov" id="0" name="EventControllerTests" package="calendar" tests="6" time="7.235" timestamp="2014-08-28T18:26:45">
       <properties />
 
-      <testcase classname="calendar.EventTests" name="testSomething" time="0.449">
-          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
-	at calendar.EventTests.testSomething(EventTests.groovy:15)
+      <testcase classname="calendar.EventControllerTests" name="testIndex" time="2.152" />
+
+      <testcase classname="calendar.EventControllerTests" name="testEdit" time="2.243">
+          <failure message="Assertion failed: &#xa;&#xa;assert event.save() != null&#xa;       |     |      |&#xa;       |     null   false&#xa;       calendar.Event : (unsaved)&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Assertion failed: 
+
+assert event.save() != null
+       |     |      |
+       |     null   false
+       calendar.Event : (unsaved)
+
+	at calendar.EventControllerTests.testEdit(EventControllerTests.groovy:94)
 </failure>
 
       </testcase>
+
+      <testcase classname="calendar.EventControllerTests" name="testList" time="0.719" />
+
+      <testcase classname="calendar.EventControllerTests" name="testSave" time="0.807">
+          <failure message="Assertion failed: &#xa;&#xa;assert response.redirectedUrl == &apos;/event/show/1&apos;&#xa;       |        |             |&#xa;       |        /event/show   false&#xa;       org.codehaus.groovy.grails.plugins.testing.GrailsMockHttpServletResponse@49c2687c&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Assertion failed: 
+
+assert response.redirectedUrl == &apos;/event/show/1&apos;
+       |        |             |
+       |        /event/show   false
+       org.codehaus.groovy.grails.plugins.testing.GrailsMockHttpServletResponse@49c2687c
+
+	at calendar.EventControllerTests.testSave(EventControllerTests.groovy:62)
+</failure>
+
+      </testcase>
+
+      <testcase classname="calendar.EventControllerTests" name="testShow" time="0.624">
+          <failure message="Assertion failed: &#xa;&#xa;assert event.save() != null&#xa;       |     |      |&#xa;       |     null   false&#xa;       calendar.Event : (unsaved)&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Assertion failed: 
+
+assert event.save() != null
+       |     |      |
+       |     null   false
+       calendar.Event : (unsaved)
+
+	at calendar.EventControllerTests.testShow(EventControllerTests.groovy:76)
+</failure>
+
+      </testcase>
+
+      <testcase classname="calendar.EventControllerTests" name="testCreate" time="0.495" />
+
+      <system-out><![CDATA[--Output from testIndex--
+--Output from testEdit--
+--Output from testList--
+--Output from testSave--
+--Output from testShow--
+--Output from testCreate--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testIndex--
+--Output from testEdit--
+--Output from testList--
+--Output from testSave--
+--Output from testShow--
+--Output from testCreate--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="bythos.ngdc.noaa.gov" id="1" name="EventTests" package="calendar" tests="1" time="0.292" timestamp="2014-08-28T18:26:52">
+      <properties />
+
+      <testcase classname="calendar.EventTests" name="testSomething" time="0.082" />
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="bythos.ngdc.noaa.gov" id="2" name="UserControllerTests" package="calendar" tests="8" time="1.44" timestamp="2014-08-28T18:26:52">
+      <properties />
+
+      <testcase classname="calendar.UserControllerTests" name="testIndex" time="0.443" />
+
+      <testcase classname="calendar.UserControllerTests" name="testEdit" time="0.162" />
+
+      <testcase classname="calendar.UserControllerTests" name="testList" time="0.132" />
+
+      <testcase classname="calendar.UserControllerTests" name="testSave" time="0.147" />
+
+      <testcase classname="calendar.UserControllerTests" name="testShow" time="0.124" />
+
+      <testcase classname="calendar.UserControllerTests" name="testCreate" time="0.098" />
+
+      <testcase classname="calendar.UserControllerTests" name="testDelete" time="0.093" />
+
+      <testcase classname="calendar.UserControllerTests" name="testUpdate" time="0.106" />
+
+      <system-out><![CDATA[--Output from testIndex--
+--Output from testEdit--
+--Output from testList--
+--Output from testSave--
+--Output from testShow--
+--Output from testCreate--
+--Output from testDelete--
+--Output from testUpdate--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testIndex--
+--Output from testEdit--
+--Output from testList--
+--Output from testSave--
+--Output from testShow--
+--Output from testCreate--
+--Output from testDelete--
+--Output from testUpdate--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="bythos.ngdc.noaa.gov" id="3" name="UserTests" package="calendar" tests="1" time="0.074" timestamp="2014-08-28T18:26:54">
+      <properties />
+
+      <testcase classname="calendar.UserTests" name="testSomething" time="0.073" />
 
       <system-out><![CDATA[--Output from testSomething--
 ]]></system-out>

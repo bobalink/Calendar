@@ -6,8 +6,10 @@ class UrlMappings {
 				// apply constraints here
 			}
 		}
-
-		"/"(controller: 'user', action:'list')
+        "/hinton"(controller:'event', action:'list')
+		"/"(controller:'event', action:'list')
 		"500"(view:'/error')
+        "/login/$action?"(controller: "login")
+        "/logout/$action?"(controller: "logout")
 	}
 }

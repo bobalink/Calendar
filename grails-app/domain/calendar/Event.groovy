@@ -7,6 +7,8 @@ class Event {
     Integer cost
     String location
     String discription
+    User owner
+    Boolean privateEvent
 
     static belongsTo=[user:User]
 
@@ -16,6 +18,8 @@ class Event {
         cost nullable:true
         location nullable: true
         discription nullable: true
+        owner nullable: false
+        privateEvent nullable:false
 
     }
 }

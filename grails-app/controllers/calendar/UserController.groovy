@@ -2,23 +2,31 @@ package calendar
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.SpringSecurityUtils
+
 class UserController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+  //  static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    SpringSecurityService springSecurityService
+   // @Secured(['ROLE_ADMIN','ROLE_GUEST'])
     def index() {
         redirect(action: "list", params: params)
     }
-
+   // @Secured(['ROLE_ADMIN','ROLE_GUEST'])
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [userInstanceList: User.list(params), userInstanceTotal: User.count()]
     }
 
+
+    @Secured(['ROLE_ADMIN'])
     def create() {
+        redirect(action: "register")
         [userInstance: new User(params)]
     }
-
+    @Secured(['ROLE_ADMIN'])
     def save() {
         def userInstance = new User(params)
         if (!userInstance.save(flush: true)) {
@@ -29,7 +37,7 @@ class UserController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
         redirect(action: "show", id: userInstance.id)
     }
-
+    @Secured(['ROLE_ADMIN'])
     def show(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
@@ -41,6 +49,7 @@ class UserController {
         [userInstance: userInstance]
     }
 
+    @Secured(['ROLE_USER'])
     def edit(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
@@ -52,6 +61,7 @@ class UserController {
         [userInstance: userInstance]
     }
 
+    @Secured(['ROLE_USER'])
     def update(Long id, Long version) {
         def userInstance = User.get(id)
         if (!userInstance) {
@@ -80,7 +90,7 @@ class UserController {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
         redirect(action: "show", id: userInstance.id)
     }
-
+    @Secured(['ROLE_USER'])
     def delete(Long id) {
         def userInstance = User.get(id)
         if (!userInstance) {
@@ -99,4 +109,26 @@ class UserController {
             redirect(action: "show", id: id)
         }
     }
+
+
+    def register() {
+        if(request.method == 'POST') {
+            def u = new User()
+            u.properties['username', 'password', 'name','email'] = params
+            if(u.password != params.confirm) {
+                u.errors.rejectValue("password", "user.password.dontmatch")
+                return [user:u]
+            } else if(u.save()) {
+                session.user = u
+                redirect controller:"event"
+            } else {
+                return [user:u]
+            }
+        }
+    }
+
+
 }
+
+
+
