@@ -11,17 +11,44 @@ class EventController {
 
     SpringSecurityService springSecurityService
     def scaffold = true
-    //static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     //@Secured(['ROLE_ADMIN','ROLE_GUEST'])
     def index() {
        // redirect(action: "list", params: params)
     }
     //@Secured(['ROLE_ADMIN','ROLE_GUEST'])
-    def list() { //Integer max
-        //params.max = Math.min(max ?: 10, 100)
-        [eventInstanceList: Event.list(params), eventInstanceTotal: Event.count()]
+    def list(Integer max) {
+        def user = springSecurityService.currentUser
+
+        params.max = Math.min(max ?: 10, 100)
+        println "params are " + params
+        params.owner = user
+        params.privateEvent = true
+        println "params after declaration are " + params
+
+        def e = Event.createCriteria()
+        def results = e.list {
+            or {
+                eq("privateEvent", false)
+
+                and {
+                    eq("privateEvent", true)
+                    eq("owner", user)
+                }
+            }
+        }
+
+
+        [eventInstanceList: results , eventInstanceTotal: results.size()]
+//        Event.list(params).each(){
+//            if (it.privateEvent && user == it.owner) {
+//                println("user is the owner of the event")
+//                [eventInstance: eventInstance , eventInstanceTotal: Event.count()]
+//            }
+//        }
+
     }
-    @Secured(['ROLE_ADMIN','ROLE_GUEST'])
+    @Secured(['ROLE_ADMIN'])
     def create() {
         [eventInstance: new Event(params)]
     }
@@ -57,10 +84,9 @@ class EventController {
             redirect(action: "list")
             return
         }
-      //  if (eventInstance.privateEvent && session.user.name == eventInstance.owner.name) {
-      //      println("user is the owner of the event")
+
             [eventInstance: eventInstance]
-      //  }
+
     }
     @Secured(['ROLE_ADMIN'])
     def edit(Long id) {

@@ -8,7 +8,7 @@ import grails.plugin.springsecurity.SpringSecurityUtils
 
 class UserController {
 
-  //  static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+  static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     SpringSecurityService springSecurityService
    // @Secured(['ROLE_ADMIN','ROLE_GUEST'])
     def index() {

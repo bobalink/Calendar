@@ -24,12 +24,26 @@ class BootStrap {
         String oldstring = "2014-08-22 00:00:00.0";
         Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
         Event event1 = new Event(name:"Friday", date:date, user:user, owner:user, privateEvent: true)
+        Event event2 = new Event(name:"Today!", date:date, user:otherUser, owner:otherUser, privateEvent: true)
+        Event event3 = new Event(name:"Public", date:date, user:user, owner:user, privateEvent: false)
 
 
         if (!event1.save()){
             log.error "Could not save Event!"
             log.error "${event1.errors}"
+
         }
+        if (!event2.save()){
+            log.error "Could not save Event!"
+            log.error "${event2.errors}"
+        }
+
+        if (!event3.save()){
+            log.error "Could not save Event!"
+            log.error "${event3.errors}"
+        }
+
+
     }
     def destroy = {
     }

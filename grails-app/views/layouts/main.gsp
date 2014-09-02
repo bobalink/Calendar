@@ -21,7 +21,21 @@
              <g:link controller="login" action="auth">Login</g:link>
          </sec:ifNotLoggedIn>
 
-         <g:link controller = "event" action= "list">   Public Events </g:link>
+         <sec:ifAllGranted roles="ROLE_USER">
+
+         	            Welcome Back <sec:username />!
+         	             <a class="btn-sm btn-primary" href="/Calendar/logout" role="button">Log Out</a>
+         	          <!--  (<g:link controller="logout">sign out</g:link>) -->
+
+
+
+         </sec:ifAllGranted>
+
+
+
+
+         <g:link controller = "event" action= "list">Public Events</g:link>
+         <g:link controller = "user" action= "list">All Users</g:link>
 
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
 		<g:layoutBody/>
