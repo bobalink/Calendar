@@ -42,11 +42,29 @@
 	<g:textField name="discription" value="${eventInstance?.discription}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'privateEvent', 'error')} ">
+	<label for="privateEvent">
+		<g:message code="event.privateEvent.label" default="Private Event" />
+		
+	</label>
+	<g:checkBox name="privateEvent" value="${eventInstance?.privateEvent}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'attendance', 'error')} ">
+	<label for="attendance">
+		<g:message code="event.attendance.label" default="Attendance" />
+		
+	</label>
+	<g:select id="attendance" name="attendance.id" from="${calendar.Attendance.list()}" optionKey="id" value="${eventInstance?.attendance?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'user', 'error')} required">
 	<label for="user">
-		<g:message code="event.user.label" default="User" />
+		<g:message code="event.user.label" default="Host" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="user" name="user.id" from="${calendar.User.list()}" optionKey="id" required="" value="${eventInstance?.user?.id}" class="many-to-one"/>
+	<sec:username />
+	<g:hiddenField name="user.id" value="${sec.loggedInUserInfo(field:"id")}"/>
+<!--	<g:select id="user" name="user.id" from="${calendar.User.list()}" optionKey="id" required="" value="${eventInstance?.user?.id}" class="many-to-one"/> -->
 </div>
 

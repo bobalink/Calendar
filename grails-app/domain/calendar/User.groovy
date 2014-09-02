@@ -10,6 +10,11 @@ class User extends SecUser {
     static hasMany=[events:Event]
 
 
+    String toString(){
+        return name
+    }
+
+
     static constraints = {
         name(nullable:false, blank:false)
 //        login(blank:false, size:5..15,matches:/[\S]+/,unique:true)

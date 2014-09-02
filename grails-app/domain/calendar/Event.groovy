@@ -7,10 +7,12 @@ class Event {
     Integer cost
     String location
     String discription
-    User owner
+   // User owner
     Boolean privateEvent
+    Attendance attendance
 
     static belongsTo=[user:User]
+
 
     static constraints = {
         name nullable: false
@@ -18,8 +20,9 @@ class Event {
         cost nullable:true
         location nullable: true
         discription nullable: true
-        owner nullable: false
+      //  owner nullable: false
         privateEvent nullable:false
+        attendance nullable:true
 
     }
 }

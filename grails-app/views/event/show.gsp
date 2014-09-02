@@ -12,7 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -68,20 +68,37 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${eventInstance?.privateEvent}">
+				<li class="fieldcontain">
+					<span id="privateEvent-label" class="property-label"><g:message code="event.privateEvent.label" default="Private Event" /></span>
+					
+						<span class="property-value" aria-labelledby="privateEvent-label"><g:formatBoolean boolean="${eventInstance?.privateEvent}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${eventInstance?.attendance}">
+				<li class="fieldcontain">
+					<span id="attendance-label" class="property-label"><g:message code="event.attendance.label" default="Attendance" /></span>
+					
+						<span class="property-value" aria-labelledby="attendance-label"><g:link controller="attendance" action="show" id="${eventInstance?.attendance?.id}">${eventInstance?.attendance?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${eventInstance?.user}">
 				<li class="fieldcontain">
 					<span id="user-label" class="property-label"><g:message code="event.user.label" default="User" /></span>
 					
-						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${eventInstance?.user?.id}">${eventInstance?.user?.name.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${eventInstance?.user?.id}">${eventInstance?.user?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
 			
 			</ol>
-			<g:form>
+			<g:form url="[resource:eventInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${eventInstance?.id}" />
-					<g:link class="edit" action="edit" id="${eventInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="edit" action="edit" resource="${eventInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>

@@ -10,6 +10,8 @@ import grails.plugin.springsecurity.SpringSecurityUtils
 class EventController {
 
     SpringSecurityService springSecurityService
+
+
     def scaffold = true
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     //@Secured(['ROLE_ADMIN','ROLE_GUEST'])
@@ -22,7 +24,7 @@ class EventController {
 
         params.max = Math.min(max ?: 10, 100)
         println "params are " + params
-        params.owner = user
+        params.user = user
         params.privateEvent = true
         println "params after declaration are " + params
 
@@ -33,7 +35,7 @@ class EventController {
 
                 and {
                     eq("privateEvent", true)
-                    eq("owner", user)
+                    eq("user", user)
                 }
             }
         }
