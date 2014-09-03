@@ -12,6 +12,7 @@ class BootStrap {
         User user = new User(name:'Waverly', email:'bobalink13@gmail.com', username: "bobalink", password: "password")
         User otherUser = new User(name:'jim', email:'jimsEmail@gmail.com',username: "jimslogin", password: "jimspassword")
 
+
         if (!adminUser.save()){
             log.error "Could not save user!!"
             log.error "${adminUser.errors}"
@@ -39,6 +40,16 @@ class BootStrap {
         Event event3 = new Event(name:"Public", date:date, user:user, privateEvent: false)
 
 
+        GuestList myGuests  = new GuestList(name:"myGuestList", event:event3)
+
+        myGuests.addToInvitees(user)
+        myGuests.addToInvitees(otherUser)
+        //myGuests.addToEvent(event3)
+
+        //event3.addToGuestList(myGuests)
+
+
+
         if (!event1.save()){
             log.error "Could not save Event!"
             log.error "${event1.errors}"
@@ -52,6 +63,12 @@ class BootStrap {
         if (!event3.save()){
             log.error "Could not save Event!"
             log.error "${event3.errors}"
+        }
+
+
+        if (!myGuests.save()){
+            log.error "Could not save my guests!"
+            log.error "${myGuests.errors}"
         }
 
 

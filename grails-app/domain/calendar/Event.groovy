@@ -9,10 +9,15 @@ class Event {
     String discription
    // User owner
     Boolean privateEvent
-    Attendance attendance
+    GuestList guestList
+
 
     static belongsTo=[user:User]
 
+
+    String toString(){
+        return name
+    }
 
     static constraints = {
         name nullable: false
@@ -22,7 +27,7 @@ class Event {
         discription nullable: true
       //  owner nullable: false
         privateEvent nullable:false
-        attendance nullable:true
+        guestList nullable:true
 
     }
 }

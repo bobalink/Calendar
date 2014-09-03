@@ -76,12 +76,14 @@
 					
 				</li>
 				</g:if>
+
+
 			
-				<g:if test="${eventInstance?.attendance}">
+				 <g:if test="${eventInstance?.guestList}">
 				<li class="fieldcontain">
-					<span id="attendance-label" class="property-label"><g:message code="event.attendance.label" default="Attendance" /></span>
+					<span id="guestList-label" class="property-label"><g:message code="event.guestList.label" default="Guest List" /></span>
 					
-						<span class="property-value" aria-labelledby="attendance-label"><g:link controller="attendance" action="show" id="${eventInstance?.attendance?.id}">${eventInstance?.attendance?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="guestList-label"><g:link controller="guestList" action="show" id="${eventInstance?.guestList?.id}">${eventInstance?.guestList?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

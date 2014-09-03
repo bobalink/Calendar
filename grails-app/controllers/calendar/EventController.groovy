@@ -14,19 +14,20 @@ class EventController {
 
     def scaffold = true
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
     //@Secured(['ROLE_ADMIN','ROLE_GUEST'])
     def index() {
-       // redirect(action: "list", params: params)
+        redirect(action: "list", params: params)
     }
     //@Secured(['ROLE_ADMIN','ROLE_GUEST'])
     def list(Integer max) {
         def user = springSecurityService.currentUser
 
         params.max = Math.min(max ?: 10, 100)
-        println "params are " + params
-        params.user = user
-        params.privateEvent = true
-        println "params after declaration are " + params
+//        println "params are " + params
+//        params.user = user
+//        params.privateEvent = true
+//        println "params after declaration are " + params
 
         def e = Event.createCriteria()
         def results = e.list {
